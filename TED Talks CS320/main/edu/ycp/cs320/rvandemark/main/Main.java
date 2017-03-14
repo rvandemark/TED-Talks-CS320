@@ -6,6 +6,8 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.webapp.WebAppContext;
 
+import edu.ycp.cs320.rvandemark.model.Review;
+
 public class Main {
 	public static void main(String[] args) throws Exception {
 		Server server = new Server(8081);
@@ -21,6 +23,8 @@ public class Main {
 		
 		// Start the server
 		server.start();
+		
+		System.out.println(new Review(null, null, "You a dumb b!tch Billy", 0, 0).getText());
 		
 		// Wait for the user to type "quit"
 		System.out.println("Web server started, type quit to shut down");

@@ -3,7 +3,7 @@ package edu.ycp.cs320.rvandemark.model;
 public class Review {
 	
 	private final static String[] OFFENSIVE = {
-		"fuck", "shit", "bitch", "dick", "cock", "pussy", "cunt", "nigger", "nigga"
+		"fuck", "shit", "bitch", "dick", "cock", "pussy", "cunt", "tit", "nigger", "nigga"
 	};
 	
 	private User author;
