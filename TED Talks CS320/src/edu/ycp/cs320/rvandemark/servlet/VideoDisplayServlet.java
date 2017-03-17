@@ -22,11 +22,9 @@ public class VideoDisplayServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String URL = "http://www.ted.com/talks/caitlin_doughty_a_burial_practice_that_nourishes_the_planet";
-		String name = "The pattern behind self-deception";
-		String[] disciplines = {"Mechanical Engineering", "Creativity", "Art"};
-		double rating = 1.25;
+		double rating = 2.5;
 		
-		req.setAttribute("video", new Video(URL, name, disciplines, rating));
+		req.setAttribute("video", new Video(URL, rating));
 		
 		req.getRequestDispatcher("/_view/videoDisplay.jsp").forward(req, resp);
 	}

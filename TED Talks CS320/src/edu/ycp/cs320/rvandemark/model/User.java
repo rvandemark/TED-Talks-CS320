@@ -21,13 +21,25 @@ public class User {
 		disciplines = d;
 	}
 	
-	public void flagReview(Review review) {
-		
+	public String getEmail() {
+		return email;
 	}
-	public void editReview(Review review) {
-		
+	public String getUserID() {
+		return userID;
 	}
-	public void deleteReview(Review review) {
-		
+	public String getPassword() {
+		return password;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public String[] getDisciplines() {
+		return disciplines;
 	}
 }

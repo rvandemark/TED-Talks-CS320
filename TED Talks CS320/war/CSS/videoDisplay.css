@@ -6,26 +6,38 @@
 	background: #095825;
 	margin: 0px;
 }
-
 #york_logo {
 	float: right;
 	width: 80px;
 	height: 80px;
 }
 
-.container {
+.videoTitleWrapper {
+	width: 640px;
+}
+.videoTitle {
+	font-family: Georgia;
+	font-size: 32px;
+}
+.videoTitle:hover {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#reviewComment {
+	position: absolute;
+}
+#reviewStars {
+	position: relative;
+}	
+#reviewSubmit {
 	position: relative;
 }
 
-#clipped {
+#ratingContainer {
+	position: relative;
+}
+#ratingStars {
 	position: absolute;
-}
-
-.video_title_wrapper {
-	width: 640px;
-}
-
-.video_title {
-	font-family: Georgia;
-	font-size: 32px;
 }

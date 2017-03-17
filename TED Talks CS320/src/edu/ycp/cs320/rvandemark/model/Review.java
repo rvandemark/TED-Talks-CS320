@@ -12,11 +12,21 @@ public class Review {
 	private int score;
 	private int value;
 	
+	//load a pre-existing review from the database
 	public Review(User a, Video p, String t, int s, int v) {
 		author = a;
 		parent = p;
 		text = t;
 		score = s;
+		value = v;
+	}
+	
+	//create a new review object to be stored into the database
+	public Review(User a, Video p, String t, int v) {
+		author = a;
+		parent = p;
+		text = t;
+		score = 0;
 		value = v;
 		
 		censor();
@@ -36,6 +46,10 @@ public class Review {
 	}
 	public int getValue() {
 		return value;
+	}
+	
+	public void setText(String t) {
+		text = t;
 	}
 	
 	private void censor() {

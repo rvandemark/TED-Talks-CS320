@@ -10,10 +10,10 @@ public class Notification {
 		target = t;
 	}
 	
-	public boolean notifyAdmin() {
-		return true;
+	public User getFlagger() {
+		return flagger;
 	}
-	public boolean notifyReviewer() {
-		return true;
+	public Review getTarget() {
+		return target;
 	}
 }
