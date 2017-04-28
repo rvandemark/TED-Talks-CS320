@@ -15,24 +15,24 @@ public class Main {
 		handler.setContextPath("/rvandemark");
 		handler.setWar("./war"); // web app is in the war directory of the project
 		server.setHandler(handler);
-		
+
 		// Use 20 threads to handle requests
 		server.setThreadPool(new QueuedThreadPool(20));
-		
+
 		// Start the server
 		server.start();
-		
-		// Wait for the user to type "quit"
-		System.out.println("Web server started, type quit to shut down");
+
+		// Wait for the user to type anything to quit
+		System.out.println("Web server started, type anything to shut down");
 		Scanner keyboard = new Scanner(System.in);
 		while (keyboard.hasNextLine()) {
 			String line = keyboard.nextLine();
-			if (line.trim().toLowerCase().equals("quit")) {
+			if (!line.equals("")) {
 				break;
 			}
 		}
-		
-		System.out.println("Shutting down...");
+
+		System.out.println("Shutting down..."); 
 		keyboard.close();
 		server.stop();
 		server.join();

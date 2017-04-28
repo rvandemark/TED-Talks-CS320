@@ -6,14 +6,43 @@
 	background: #095825;
 	margin: 0px;
 }
+
 #york_logo {
 	float: right;
 	width: 80px;
 	height: 80px;
 }
 
+#ted_talks_logo {
+	position: relative;
+	top: 15px;
+	left: 5px;
+}
+
+#searchBar {
+	padding-right: 50px;
+	float: right;
+}
+
+.suggestedVideosContainer {
+	padding-right: 20px;
+	float: right;
+	width: 400px;
+}
+.suggestedVideoWrapper {
+	width: 400px;
+}
+.suggestedVideoName {
+	width: 180px;
+	float: right;
+}
+
+.indent {
+	padding-left: 20px;
+}
+
 .videoTitleWrapper {
-	width: 640px;
+	width: 620px;
 }
 .videoTitle {
 	font-family: Georgia;
@@ -25,19 +54,99 @@
 	cursor: pointer;
 }
 
-#reviewComment {
-	position: absolute;
-}
-#reviewStars {
-	position: relative;
-}	
-#reviewSubmit {
-	position: relative;
+#videoFrame {
+	left: 20px;
 }
 
-#ratingContainer {
-	position: relative;
-}
-#ratingStars {
+#subReviewWrapper, #reviewStars, #ratingStars {
 	position: absolute;
+}
+
+#initReviewSubmit {
+	position: absolute;
+	bottom: -110px;
+}
+.fancyBtn {
+	font-family: 'comic sans ms';
+	font-size: 14px;
+	padding: 10px 25px;
+	border-radius: 10px;
+	cursor: pointer;
+	color: #FFFFFF;
+}
+.submit {
+	background: #067A0A;
+}
+.close {
+	background: #FF0000;
+}
+
+.large {
+	font-size: 20px;
+}
+
+.reviewContent {
+	left: 40px;
+	position: relative;
+	width: 700px;
+	min-height: 60px;
+	background-color: rgb(200, 200, 200);
+	border-radius: 10px;
+}
+.reviewName {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 32px;
+	padding-left: 12px;
+	padding-top: 12px;
+	position: absolute;
+	float: right;
+}
+.reviewText {
+	padding-left: 10px;
+	font-size: 20px;
+}
+
+.none {
+	font-size: 0px;
+}
+
+.textButtonWrapper {
+	display: inline;
+}
+.textButton {
+	background: none!important;
+    border: none; 
+    padding: 0!important;
+}
+.textButton:hover {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#reviewPopUpBackground {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+/* styling for #reviewPopUp found at https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal */
+#reviewPopUp {
+	display: none;
+    position: absolute;
+    z-index: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    left: 0;
+    top: 0;
+    width: 320px;
+    height: 200px;
+    color: white;
+    background-color: #095825;
+    border-radius: 10px;
 }

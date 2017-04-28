@@ -7,12 +7,12 @@ public class Admin extends User {
 		super(e, u, pa, f, l, po, d);
 	}
 	
-	public void receive(Notification n) {
+	public String receive(Notification n) {
 		User u = n.getFlagger();
 		Review r = n.getTarget();
-		String text = "User " + u.getUserID() + " (" + u.getFirstName() + " " + u.getLastName() + ") flagged a review.";
-				text += "\n\tOriginal review left by user " + r.getAuthor().getUserID() + " (" + r.getAuthor().getFirstName() + " " + r.getAuthor().getLastName() + ")";
+		String text = "User " + u.getScreenName() + " (" + u.getFirstName() + " " + u.getLastName() + ") flagged a review.";
+				text += "\n\tOriginal review left by user " + r.getAuthor().getScreenName() + " (" + r.getAuthor().getFirstName() + " " + r.getAuthor().getLastName() + ")";
 				text += "\n\tLeft under video \"" + r.getParent().getName() + "\"";
-		System.out.println(text);
+		return text;
 	}
 }

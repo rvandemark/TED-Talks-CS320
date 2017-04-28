@@ -1,35 +1,56 @@
 package edu.ycp.cs320.rvandemark.model;
 
+import java.util.Calendar;
+
 public class Review {
 	
-	private final static String[] OFFENSIVE = {
-		"fuck", "shit", "bitch", "dick", "cock", "pussy", "cunt", "tit", "nigger", "nigga"
-	};
+	private final static String[] OFFENSIVE = {"keyword"};
 	
 	private User author;
 	private Video parent;
 	private String text;
+	private Calendar postDate;
 	private int score;
 	private int value;
+	private boolean mustSee, greatForEngineer, greatForAnyone, interesting, limited, outdated, notRecommended;
 	
-	//load a pre-existing review from the database
-	public Review(User a, Video p, String t, int s, int v) {
+	public Review(User a, Video p, String t, int pm, int pd, int py, int s, int v, boolean m, boolean eng, boolean any, boolean i, boolean l, boolean o, boolean nr) {
 		author = a;
 		parent = p;
 		text = t;
+		postDate = Calendar.getInstance();
+		postDate.setTimeInMillis(getDateMillis(pm, pd, py));
 		score = s;
 		value = v;
+		
+		mustSee = m;
+		greatForEngineer = eng;
+		greatForAnyone = any;
+		interesting = i;
+		limited = l;
+		outdated = o;
+		notRecommended = nr;
 	}
 	
-	//create a new review object to be stored into the database
-	public Review(User a, Video p, String t, int v) {
+	public Review(User a, Video p, String t, int v, boolean m, boolean eng, boolean any, boolean i, boolean l, boolean o, boolean nr) {
 		author = a;
 		parent = p;
 		text = t;
+		postDate = Calendar.getInstance();
 		score = 0;
 		value = v;
 		
+		mustSee = m;
+		greatForEngineer = eng;
+		greatForAnyone = any;
+		interesting = i;
+		limited = l;
+		outdated = o;
+		notRecommended = nr;
+		
 		censor();
+		
+		parent.addReview(this);
 	}
 	
 	public User getAuthor() {
@@ -41,11 +62,46 @@ public class Review {
 	public String getText() {
 		return text;
 	}
+	public Calendar getPostDate() {
+		return postDate;
+	}
 	public int getScore() {
 		return score;
 	}
 	public int getValue() {
 		return value;
+	}
+	
+	public int getPostMonth() {
+		return postDate.get(Calendar.MONTH);
+	}
+	public int getPostDay() {
+		return postDate.get(Calendar.DAY_OF_MONTH);
+	}
+	public int getPostYear() {
+		return postDate.get(Calendar.YEAR);
+	}
+	
+	public boolean isMustSee() {
+		return mustSee;
+	}
+	public boolean isGreatForEngineer() {
+		return greatForEngineer;
+	}
+	public boolean isGreatForAnyone() {
+		return greatForAnyone;
+	}
+	public boolean isInteresting() {
+		return interesting;
+	}
+	public boolean isLimited() {
+		return limited;
+	}
+	public boolean isOutdated() {
+		return outdated;
+	}
+	public boolean isNotRecommended() {
+		return notRecommended;
 	}
 	
 	public void setText(String t) {
@@ -57,7 +113,7 @@ public class Review {
 		while (remaining.indexOf(' ') >= 0) {
 			next = remaining.substring(0, remaining.indexOf(' '));
 			
-			if (isOffensive(Substitution.baseWord(next))) {
+			if (isOffensive(next)) {
 				for (int i = 0; i < next.length(); i++) censored += "*";
 			} else {
 				censored += next;
@@ -81,48 +137,26 @@ public class Review {
 		return false;
 	}
 	
-	private enum Substitution {
-		
-		_a('a', '@', '4'),
-		_e('e', '3'),
-		_i('i', '!', '1'),
-		_l('l', '|'),
-		_o('o', '0'),
-		_s('s', '$', '5'),
-		_t('t', '7'),
-		_z('z', '2');
-		
-		private char character;
-		private char[] substitutions;
-		
-		private Substitution(char c, char... s) {
-			character = c;
-			substitutions = s;
+	private long getDateMillis(int month, int day, int year) {
+		try {
+			Calendar date = Calendar.getInstance();
+			date.set(Calendar.MONTH, month-1);
+			date.set(Calendar.DAY_OF_MONTH, day);
+			date.set(Calendar.YEAR, year);
+			return date.getTimeInMillis();
+		} catch (Exception e) {
+			return -1;
 		}
-		
-		public static String baseWord (String word) {
-			String base = "";
-			
-			Substitution s;
-			for (int i = 0; i < word.length(); i++) {
-				s = getSub(word.charAt(i));
-				if (s != null) {
-					base += s.character;
-				} else {
-					base += word.charAt(i);
-				}
-			}
-			
-			return base;
-		}
-		
-		private static Substitution getSub(char s) {
-			for (int i = 0; i < values().length; i++) {
-				for (int j = 0; j < values()[i].substitutions.length; j++) {
-					if (values()[i].substitutions[j] == s) return values()[i];
-				}
-			}
-			return null;
-		}
+	}
+	
+	public void removeFromParent() {
+		parent.deleteReview(this);
+	}
+	
+	@Override
+	public String toString() {
+		return "Review {\n\t" + author.getScreenName() + "\n\t\"" + parent.getConcatenatedName() + "\"\n\t\"" + text +
+				"\"\n\t" + postDate.get(Calendar.MONTH) + "/" + postDate.get(Calendar.DAY_OF_MONTH) + "/" + postDate.get(Calendar.YEAR) +
+				"\n}";
 	}
 }

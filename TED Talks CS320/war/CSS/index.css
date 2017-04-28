@@ -16,15 +16,16 @@
 	top: 15px;
 	left: 5px;
 }
-#sign_in_icon	{
-	position: relative;
-	float: left;
+#user_greeting {
+	color: white;
 }
-#sign_in_email	{
-	position: relative;
-	float: left;
-}
-#sign_in_password	{
+#sign_in_email {
 	position: absolute;
-	float: left;
+}
+#sign_in_password {
+	position: absolute;
+}
+
+#userIcon:before {
+	background-image: url('resources/Person Icon.png');
 }

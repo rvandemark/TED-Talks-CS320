@@ -1,0 +1,16 @@
+*user: stores every user's data
+	user_id			integer automatically generated
+	email			varchar(56)
+	screen_name		varchar(32)
+	password		varchar(32)
+	last_name		varchar(40)
+	first_name		varchar(40)
+	total_points	integer
+	
+*disciplines: contains each type of discipline
+	discipline_id	integer automatically generated
+	name			varchar(72)
+	
+*user_disciplines: maps each user's disciplines
+	user_id			integer
+	discipline_id	integer

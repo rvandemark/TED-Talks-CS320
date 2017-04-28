@@ -1,35 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         version="2.5"
-         xmlns="http://java.sun.com/xml/ns/javaee">
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.rvandemark.servlet.IndexServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>VideoDisplayServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.rvandemark.servlet.VideoDisplayServlet</servlet-class>
-  </servlet>
-  
-  <!-- AJAX servlets. -->
+	<!-- Resource mapping -->
 
-  <!-- Servlet mappings -->
-  <servlet-mapping>
-    <servlet-name>IndexServlet</servlet-name>
-    <url-pattern>/index</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>VideoDisplayServlet</servlet-name>
-    <url-pattern>/videoDisplay</url-pattern>
-  </servlet-mapping>
-  
-  <!--  AJAX servlet mappings. -->
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>IndexServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.IndexServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>VideoDisplayServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.VideoDisplayServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ClassVideosServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.ClassVideosServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UploadPageServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.UploadPageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LandingPageServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.LandingPageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AssignPageServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.AssignPageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ClassRosterServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.ClassRosterServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CreateAccountServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.CreateAccountServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SearchPageServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.SearchPageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LoginPageServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.LoginPageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UserPageServlet</servlet-name>
+		<servlet-class>edu.ycp.cs320.rvandemark.servlet.UserPageServlet</servlet-class>
+	</servlet>
 
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
+	<!-- AJAX servlets. -->
+
+	<!-- Servlet mappings -->
+	<servlet-mapping>
+		<servlet-name>IndexServlet</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>VideoDisplayServlet</servlet-name>
+		<url-pattern>/videoDisplay</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ClassVideosServlet</servlet-name>
+		<url-pattern>/classVideos</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadPageServlet</servlet-name>
+		<url-pattern>/uploadPage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LandingPageServlet</servlet-name>
+		<url-pattern>/landingPage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AssignPageServlet</servlet-name>
+		<url-pattern>/assignPage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ClassRosterServlet</servlet-name>
+		<url-pattern>/classRoster</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateAccountServlet</servlet-name>
+		<url-pattern>/createAccount</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SearchPageServlet</servlet-name>
+		<url-pattern>/searchPage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoginPageServlet</servlet-name>
+		<url-pattern>/loginPage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UserPageServlet</servlet-name>
+		<url-pattern>/userPage</url-pattern>
+	</servlet-mapping>
+	
+
+	<!-- AJAX servlet mappings. -->
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 </web-app>

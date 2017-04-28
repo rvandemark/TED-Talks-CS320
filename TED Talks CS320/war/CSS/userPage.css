@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+
+#page_border {
+	width: 100%;
+	height: 80px;
+	background: #095825;
+	margin: 0px;
+}
+#york_logo {
+	float: right;
+	width: 80px;
+	height: 80px;
+}
+#ted_talks_logo {
+	position: relative;
+	top: 15px;
+	left: 5px;
+}
+#user_greeting {
+	color: black;
+	text-align: center;
+}
+#points{
+	color: black;
+	text-align: center;
+}
+
+#userIcon:before {
+	background-image: url('resources/Person Icon.png');
+}
+#Disciplines{
+	width: 250px;
+}
+#Assignments{
+	width: 500px;
+	
+
+}
+#delete{
+	background-color: #095825;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#logOut{
+	    background-color: #095825;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+   
+    top: 50%;
+}
+.center{
+	text-align: center;
+}

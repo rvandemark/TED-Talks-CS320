@@ -1,0 +1,34 @@
+@CHARSET "ISO-8859-1";
+
+h2 {
+	font-family: Weiss;
+	font-size: 20px;
+	text-align: center;
+}
+
+#page_border {
+	width: 100%;
+	height: 80px;
+	background: #095825;
+	margin: 0px;
+}
+#york_logo {
+	float: right;
+	width: 80px;
+	height: 80px;
+}
+
+.inputContainer {
+	float: left;
+    width: 20%;
+    height: 300px;
+    margin: 10px;
+    border: 3px solid #000000; 
+}
+
+.linkIcon {
+	display: block;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+}

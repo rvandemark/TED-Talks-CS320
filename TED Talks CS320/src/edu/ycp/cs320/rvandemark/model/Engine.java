@@ -1,36 +1,29 @@
 package edu.ycp.cs320.rvandemark.model;
 
+import java.io.IOException;
+
+import edu.ycp.cs320.rvandemark.db.DerbyDatabase;
+
 public class Engine {
 	
-	public static User THE_USER;
-	public static Admin[] ALL_ADMINS = loadAdmins();
-			
-	public static Admin[] loadAdmins() {
-		return new Admin[]{};
+	private static DerbyDatabase db = new DerbyDatabase();
+	
+	public static DerbyDatabase getDB() {
+		return db;
 	}
 	
 	public static boolean videoIsValid(String url) {
-//		Video v;
-//		try { v = new Video(url, 0); }
-//		catch (IOException e) {
-//			return false;
-//		}
-		
-//		String formattedUrl = v.getUrl();
-		//search database for formattedUrl. If it exists somewhere, then the video does too.
-		//otherwise, the url is valid ---> return (url does not exist in database);
-		
-		return true;
+		return db.videoExistsByUrl(url);
 	}
 	public static void createVideo(String url) {
 		if (videoIsValid(url)) {
-//			try {
-//				Video v = new Video(url, 0);
-//				//write v to database
-//			} catch (IOException e) {
-//				//an exception could never be thrown because the same check occurs in videoIsValid
-//				e.printStackTrace();
-//			}
+			try {
+				Video v = new Video(url);
+				db.insertVideo(v.getUrl(), v.getEmbedUrl(), v.getName(), v.getSpeaker(), v.getThumbnailUrl(), v.getTotalRating(),
+					v.getNumRatings(), v.getRating(), v.getUploadMonth(), v.getUploadDay(), v.getUploadYear(), v.getDisciplineLine());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -45,9 +38,6 @@ public class Engine {
 		 * 		reward points to author
 		 * 
 		 */
-	}
-	public static void flagReview(User flagger, Review review) {
-		Engine.createNotification(flagger, review);
 	}
 	public static void editReview(User flagger, Review review, String text) {
 		if (flagger instanceof Admin || review.getAuthor().equals(flagger)) {
@@ -64,10 +54,5 @@ public class Engine {
 			 * 		assignment requirements
 			 */
 		}
-	}
-	
-	public static void createNotification(User flagger, Review target) {
-		Notification n = new Notification(flagger, target);
-		for (int i = 0; i < ALL_ADMINS.length; i++) ALL_ADMINS[i].receive(n);
 	}
 }
