@@ -6,8 +6,6 @@ import edu.ycp.cs320.rvandemark.model.VideoByDisciplineAssignment;
 
 public class AssignmentController {
 	private Assignment model;
-	//Hello Nick!
-	//Hello Kyle!
 	public AssignmentController(Assignment m) {
 		model = m;
 	}
