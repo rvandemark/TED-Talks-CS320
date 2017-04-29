@@ -13,7 +13,7 @@ public class Engine {
 	}
 	
 	public static boolean videoIsValid(String url) {
-		return db.videoExistsByUrl(url);
+		return !db.videoExistsByUrl(url);
 	}
 	public static void createVideo(String url) {
 		if (videoIsValid(url)) {
