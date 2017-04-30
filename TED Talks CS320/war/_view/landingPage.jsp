@@ -10,15 +10,22 @@
 <meta charset="ISO-8859-1">
 
 <title>TTB 0.0.1 Landing Page</title>
-
-<form action="${pageContext.servletContext.contextPath}/index" method="get">
 	<div id="page_border">
-		<img id="sign_in_icon" src="resources/Person Icon.png" />
-		<input id="sign_in_email" type="text" placeholder="E-Mail/UserID">
-		<input id="sign_in_password" type="text" placeholder="Password">
-		<input type="image" id="york_logo" src="resources/YCP Logo.png"/>
+<a href ="${pageContext.servletContext.contextPath}/userPage">
+			<c:if test="${empty user}">
+			<input type = "image" src="resources/Person Icon.png" width="80px" height="80px"/>
+			
+			
+		</c:if>
+		<c:if test="${!empty user}">
+			<input type="image" id="userIcon" src="${user.iconLocation}" width="80px" height="80px"/>
+			</c:if>
+	</a>
+	<a href ="${pageContext.servletContext.contextPath}/landingPage">
+		<img   id="york_logo" src="resources/YCP Logo.png"/>
+		</a>
+		
 	</div>
-</form>
 
 <div id="overall_container">
 	<div class="inputContainer">

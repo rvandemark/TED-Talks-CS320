@@ -10,8 +10,20 @@
 
 <body>
 	<div id="page_border">
-		<img id="userIcon" src="${user.iconLocation}" width="80px"
-			height="80px" /> <img id="york_logo" src="resources/YCP Logo.png" />
+<a href ="${pageContext.servletContext.contextPath}/userPage">
+			<c:if test="${empty user}">
+			<input type = "image" src="resources/Person Icon.png" width="80px" height="80px"/>
+			
+			
+		</c:if>
+		<c:if test="${!empty user}">
+			<input type="image" id="userIcon" src="${user.iconLocation}" width="80px" height="80px"/>
+			</c:if>
+	</a>
+	<a href ="${pageContext.servletContext.contextPath}/landingPage">
+		<img   id="york_logo" src="resources/YCP Logo.png"/>
+		</a>
+		
 	</div>
 
 
@@ -54,7 +66,9 @@
 				<br>
 			</fieldset>
 			<div class="center">
+			<form action="${pageContext.servletContext.contextPath}/logout" method="post">
 				<button id="logOut" name="logOut">Log Out</button>
+				</form>
 			</div>
 		</div>
 	</div>

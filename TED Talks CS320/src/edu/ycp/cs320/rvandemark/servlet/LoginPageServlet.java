@@ -54,7 +54,7 @@ public class LoginPageServlet extends HttpServlet {
 			}
 
 			// redirect to /index page
-			resp.sendRedirect(req.getContextPath() + "/index");
+			resp.sendRedirect(req.getContextPath() + "/userPage");
 
 			return;
 		}

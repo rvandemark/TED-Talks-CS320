@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Fri Apr 28 18:18:39 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-b6a5-02fc-000008eaf578 
-on database directory C:\Users\nicks\git\TED Talks CS320\TED Talks CS320\ted_talks.db with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/nicks/OneDrive/School/Sophomore%20Year/CS320/CS320_Derby/lib/derby.jar
+Sat Apr 29 20:45:37 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-bc51-ee9b-00000b1878b0 
+on database directory /Users/Kyle/git/TED-Talks-CS3201/TED Talks CS320/ted_talks.db with class loader sun.misc.Launcher$AppClassLoader@1b6d3586 
+Loaded from file:/Users/Kyle/newWorkspace1/CS320_Derby/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_72-b15
-user.dir=C:\Users\nicks\git\TED Talks CS320\TED Talks CS320
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
+java.runtime.version=1.8.0_66-b17
+user.dir=/Users/Kyle/git/TED-Talks-CS3201/TED Talks CS320
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.11.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
