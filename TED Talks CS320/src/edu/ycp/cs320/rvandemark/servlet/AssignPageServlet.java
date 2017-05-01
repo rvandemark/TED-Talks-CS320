@@ -58,6 +58,7 @@ public class AssignPageServlet extends HttpServlet {
 			btn2 = "disabled";
 			videoDiscipline = req.getParameter("videoDiscipline");
 			
+			
 			String videoCountStr = req.getParameter("videoCount");
 			if (videoCountStr.equals("")) videoCountStr = "0";
 			
@@ -77,6 +78,7 @@ public class AssignPageServlet extends HttpServlet {
 		req.setAttribute("inputDate", date);
 		req.setAttribute("videoName", videoName);
 		req.setAttribute("videoDiscipline", videoDiscipline);
+		
 		req.setAttribute("videoCount", videoCount);
 		req.setAttribute("specificVideoDisabled", btn1);
 		req.setAttribute("disciplineVideosDisabled", btn2);

@@ -45,7 +45,7 @@
 					</form>
 				</c:forEach>
 			</fieldset>
-
+<form action="${pageContext.servletContext.contextPath}/userPage" method="post">
 			<label>Add Discipline: </label> <select name="videoDiscipline">
 
 				<option disabled selected>--- select a discipline ---</option>
@@ -56,6 +56,10 @@
 				</c:forEach>
 			</select> <br>
 			<br>
+			
+			
+			<input  type="submit" value="Add Discipline!" name = "addDiscipline"></input>
+			</form>
 			<fieldset id="Assignments">
 				<legend>Assignments</legend>
 				<br>

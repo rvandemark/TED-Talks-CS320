@@ -31,8 +31,9 @@
 	</div>
 
 
-<h2>Login to Account</h2>
 
+<div align = "center">
+<h2>Login to Account</h2>
 <!-- got help with how to set up this and the servlet page from W3 schools and the resource provide -->
 <c:if test="${!empty model.errorMessage}">
 	<a class="error">${model.errorMessage}</a>
@@ -65,5 +66,7 @@
 			<button class="textButton" name="createAccount">Create account here</button>.
 		</p>
 	</div>
+
 </form>
+</div>
 </html>

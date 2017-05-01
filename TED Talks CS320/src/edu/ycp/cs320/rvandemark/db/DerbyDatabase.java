@@ -38,11 +38,19 @@ public class DerbyDatabase {
 		Scanner reader = new Scanner(System.in);
 		if (reader.nextLine().equals("0")) {
 			db.init();
+			
 		}
 		
 		reader.close();
 		
 		System.out.println("Done.");
+		
+		//ArrayList<String> disciplines = new ArrayList<String>();
+		//disciplines.addAll(db.getAllDisciplines());
+		//for(int i = 0; i< db.getAllDisciplines().size();i++ ){
+			//System.out.println(disciplines.get(i).toString());
+		//}
+		
 	}
 	
 	public void init() throws IOException {
@@ -58,7 +66,7 @@ public class DerbyDatabase {
 		
 		insertUser("rvandemark@ycp.edu", "rvandy", "p@$$word", "Vandemark", "Nick", new int[]{2,3,5,6,7,8,10}, false);
 		insertUser("emoore13@ycp.edu", "Ezzypoo", "p@$$word", "Moore", "Ezra", new int[]{3,4,5,9,10}, false);
-		insertUser("klangrill@ycp.edu", "vape_god", "p@$$word", "Langrill", "Kyle", new int[]{2,3,7,9,12}, false);
+		insertUser("klangrill@ycp.edu", "langrillk", "p@$$word", "Langrill", "Kyle", new int[]{2,3,7,9,12}, false);
 		insertUser("jdebose@ycp.edu", "Jo$hua", "p@$$word", "DeBose", "Josh", new int[]{2,3,5,10,12}, false);
 		
 		insertUser("shamilton@ycp.edu", "fake CE", "p@$$word", "Hamilton", "Scott", new int[]{1,3,5,6,7,12}, true);
@@ -366,7 +374,7 @@ public class DerbyDatabase {
 					}
 					
 					for (int i = 0; i < discipline_ids.length; i++) {
-						insertUserDiscipline(conn, user_id, discipline_ids[i]);
+						insertUserDiscipline( user_id, discipline_ids[i]);
 					}
 					
 					if (isAdmin) {
@@ -411,7 +419,10 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public void insertUserDiscipline(Connection conn, Integer user_id, Integer discipline_id) throws SQLException {
+	public void insertUserDiscipline( Integer user_id, Integer discipline_id) {
+		executeTransaction(new Transaction<Boolean>() {
+		@Override
+		public Boolean execute(Connection conn) throws SQLException {
 		PreparedStatement insertUserDiscipline = null;
 
 		try {
@@ -426,6 +437,9 @@ public class DerbyDatabase {
 		}
 		
 		System.out.println("inserted: [" + user_id + "," + discipline_id + "]");
+		return true;
+		}
+	});
 	}
 	
 	public Integer insertVideo(String url, String embedUrl, String name, String speaker, String thumbnailUrl, int totalRating, int numRatings, double rating, int uploadMonth, int uploadDay, int uploadYear, String disciplineLine) {
@@ -1527,5 +1541,37 @@ public class DerbyDatabase {
 				return pairs;
 			}
 		});
+		
 	}
-}
+		public ArrayList<String> getAllDisciplines() throws SQLException {
+			return executeTransaction(new Transaction<ArrayList<String>>() {
+				@Override
+				public ArrayList<String> execute(Connection conn) throws SQLException {
+					ArrayList<String> disciplines = new ArrayList<String>();
+					PreparedStatement getDisciplines = null;
+					ResultSet result = null;
+
+					try {
+						getDisciplines = conn.prepareStatement(
+							"select * from disciplines"
+						);
+						result = getDisciplines.executeQuery();
+						
+						while (result.next()) {
+							disciplines.add(getDisciplineById(result.getInt(1)))
+							;
+						}
+					} finally {
+						DBUtil.closeQuietly(getDisciplines);
+						DBUtil.closeQuietly(result);
+					}
+					
+					return disciplines;
+				}
+			});
+		}
+		
+		
+	
+		
+	}

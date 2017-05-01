@@ -42,10 +42,10 @@
 	</div>
 	<div class="inputContainer">
 		<div>
-			<h2>Class Videos</h2>
+			<h2>Search Videos</h2>
 		</div>
 
-		<form action="${pageContext.servletContext.contextPath}/classVideos" method="get">
+		<form action="${pageContext.servletContext.contextPath}/searchPage" method="get">
 			<div>
 				<input class="linkIcon" type="image"
 					src="resources/Class Videos Icon.png"/>
