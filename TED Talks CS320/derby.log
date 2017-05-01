@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sun Apr 30 00:18:35 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-bd14-e627-00000bfbb978 
+Mon May 01 02:25:45 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-c2af-b098-00000c102ab0 
 on database directory /Users/Kyle/git/TED-Talks-CS3201/TED Talks CS320/ted_talks.db with class loader sun.misc.Launcher$AppClassLoader@1b6d3586 
 Loaded from file:/Users/Kyle/newWorkspace1/CS320_Derby/lib/derby.jar
 java.vendor=Oracle Corporation

@@ -4,6 +4,7 @@ import java.io.File;
 
 public class User {
 	
+	private Integer id;
 	private String email;
 	private String screenName;
 	private String password;
@@ -13,7 +14,8 @@ public class User {
 	private int points;
 	private String[] disciplines;
 	
-	public User(String e, String u, String pa, String l, String f, int po, String[] d) {
+	public User(Integer i, String e, String u, String pa, String l, String f, int po, String[] d) {
+		id = i;
 		email = e;
 		screenName = u;
 		password = pa;
@@ -22,15 +24,10 @@ public class User {
 		points = po;
 		disciplines = d;
 	}
-	public User(String e, String pa, String l, String f) {
-		email = e;
-		password = pa;
-		lastName = l;
-		firstName = f;
-		points = 0;
-		disciplines = new String[0];
-	}
 	
+	public Integer getId() {
+		return id;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -57,6 +54,10 @@ public class User {
 	}
 	public boolean getIconStatus() {
 		return new File("war/" + getIconLocation()).exists();
+	}
+	
+	public void setId(Integer i) {
+		id = i;
 	}
 	
 	@Override

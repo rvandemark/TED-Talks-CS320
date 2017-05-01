@@ -45,12 +45,6 @@ public class DerbyDatabase {
 		
 		System.out.println("Done.");
 		
-		//ArrayList<String> disciplines = new ArrayList<String>();
-		//disciplines.addAll(db.getAllDisciplines());
-		//for(int i = 0; i< db.getAllDisciplines().size();i++ ){
-			//System.out.println(disciplines.get(i).toString());
-		//}
-		
 	}
 	
 	public void init() throws IOException {
@@ -140,7 +134,7 @@ public class DerbyDatabase {
 		}
 	}
 	
-	private Connection connect() throws SQLException {
+	public Connection connect() throws SQLException {
 		Connection conn = DriverManager.getConnection("jdbc:derby:ted_talks.db;create=true");
 		conn.setAutoCommit(false);
 		return conn;
@@ -374,7 +368,7 @@ public class DerbyDatabase {
 					}
 					
 					for (int i = 0; i < discipline_ids.length; i++) {
-						insertUserDiscipline( user_id, discipline_ids[i]);
+						insertUserDiscipline(conn, user_id, discipline_ids[i]);
 					}
 					
 					if (isAdmin) {
@@ -419,10 +413,7 @@ public class DerbyDatabase {
 		});
 	}
 	
-	public void insertUserDiscipline( Integer user_id, Integer discipline_id) {
-		executeTransaction(new Transaction<Boolean>() {
-		@Override
-		public Boolean execute(Connection conn) throws SQLException {
+	public void insertUserDiscipline( Connection conn, Integer user_id, Integer discipline_id) throws SQLException {
 		PreparedStatement insertUserDiscipline = null;
 
 		try {
@@ -437,11 +428,32 @@ public class DerbyDatabase {
 		}
 		
 		System.out.println("inserted: [" + user_id + "," + discipline_id + "]");
-		return true;
-		}
-	});
+	
 	}
 	
+	public void insertUserDiscipline2( Integer user_id, Integer discipline_id) throws SQLException {
+		 executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+		
+		PreparedStatement insertUserDiscipline = null;
+
+		try {
+			insertUserDiscipline = conn.prepareStatement(
+				"insert into user_disciplines (user_id, discipline_id) values (?, ?)"
+			);
+			insertUserDiscipline.setInt(1, user_id);
+			insertUserDiscipline.setInt(2, discipline_id);
+			insertUserDiscipline.executeUpdate();
+		} finally {
+			DBUtil.closeQuietly(insertUserDiscipline);
+		}
+		
+		System.out.println("inserted: [" + user_id + "," + discipline_id + "]");
+	return true;
+		}
+	});
+}
 	public Integer insertVideo(String url, String embedUrl, String name, String speaker, String thumbnailUrl, int totalRating, int numRatings, double rating, int uploadMonth, int uploadDay, int uploadYear, String disciplineLine) {
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
@@ -742,6 +754,7 @@ public class DerbyDatabase {
 					
 					if (result.next()) {
 						return new User(
+							result.getInt(1),
 							result.getString(2),
 							result.getString(3),
 							result.getString(4),
@@ -785,6 +798,7 @@ public class DerbyDatabase {
 						
 						if (userResult.next()) {
 							return new Admin(
+									userResult.getInt(1),
 								userResult.getString(2),
 								userResult.getString(3),
 								userResult.getString(4),
@@ -825,6 +839,7 @@ public class DerbyDatabase {
 					
 					if (result.next()) {
 						return new User(
+								result.getInt(1),
 							result.getString(2),
 							result.getString(3),
 							result.getString(4),
@@ -1224,7 +1239,7 @@ public class DerbyDatabase {
 				} finally {
 					DBUtil.closeQuietly(deleteUserDiscipline);
 				}
-				
+				System.out.println("deleted: ["+user_id+","+discipline_id+"]");
 				return true;
 			}
 		});
@@ -1244,7 +1259,7 @@ public class DerbyDatabase {
 					resultSet = stmt.executeQuery();
 					
 						while (resultSet.next()) {
-							result.add(new User(
+							result.add(new User(resultSet.getInt(1),
 								resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), 
 								resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7),
 								getDisciplinesForUserAsArr(resultSet.getInt(1))
@@ -1571,7 +1586,32 @@ public class DerbyDatabase {
 			});
 		}
 		
-		
+		public Integer getDisciplineId(String discipline) throws SQLException {
+			return executeTransaction(new Transaction<Integer>() {
+				@Override
+				public Integer execute(Connection conn) throws SQLException {
+					int id = -1;
+					PreparedStatement getDisciplineId = null;
+					ResultSet result = null;
+					
+					try {
+						getDisciplineId = conn.prepareStatement(
+								"select discipline_id from disciplines where name = ? "
+								);
+						
+						getDisciplineId.setString(1, discipline);
+						result = getDisciplineId.executeQuery();
+						
+						while (result.next()) {
+							 id = result.getInt(1);
+						}
+					} finally {
+						DBUtil.closeQuietly(getDisciplineId);
+						DBUtil.closeQuietly(result);
+					}
+					return id;
 	
-		
+				}
+			});
+		}
 	}

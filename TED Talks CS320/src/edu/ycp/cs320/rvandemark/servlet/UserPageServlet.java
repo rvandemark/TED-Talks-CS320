@@ -54,7 +54,42 @@ public class UserPageServlet extends HttpServlet {
 		
 		Discipline = req.getParameter("videoDiscipline");
 		
-		Engine.getDB().insertUserDiscipline(user.getId(), discipline_id);;
+		if(Discipline != null){
+			System.out.println("hi");
+		try {
+			Engine.getDB().insertUserDiscipline2( user.getId(), Engine.getDB().getDisciplineId(Discipline));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		try {
+			req.setAttribute("user", Engine.getDB().getUserByEmail(user.getEmail()));
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+	}
+		for(int i = 0; i< user.getDisciplines().length;i++){
+			if (req.getParameter("buttonNo" + i) != null) {
+				try {
+					Engine.getDB().deleteUserDiscipline(Engine.getDB().getDisciplineId(user.getDisciplines()[i]), user.getId());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		try {
+			req.setAttribute("user", Engine.getDB().getUserByEmail(user.getEmail()));
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+	}
+		
+		
+		
 		req.getRequestDispatcher("/_view/userPage.jsp").forward(req, resp);
 	}
 }

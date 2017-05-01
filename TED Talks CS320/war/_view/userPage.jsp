@@ -39,8 +39,9 @@
 					varStatus="loop">
 					<form action="${pageContext.servletContext.contextPath}/userPage"
 						method="post">
-						<button id="delete">X</button>
-						<label name="buttonNo${loop.index}"> ${loop.count}.
+						<button id="delete" name="buttonNo${loop.index}">X</button>
+						<label >
+						 ${loop.count}.
 							${discipline} </label><br>
 					</form>
 				</c:forEach>
